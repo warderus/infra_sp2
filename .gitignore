@@ -149,3 +149,5 @@ dmypy.json
 static/
 posts/static/
 
+sent_mail/
+

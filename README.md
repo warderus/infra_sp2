@@ -4,14 +4,16 @@
 
 Установка сервиса
 
-Скопируйте проект к себе на компютер git clone https://github.com/warderus/infra_sp2
-Создайте файл .env со значениями: DB_ENGINE=django.db.backends.postgresql DB_NAME=postgres POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres DB_HOST=db DB_PORT=5432 EMAIL_HOST_PASSWORD=<Ваш пароль от почты>
-Запустите Docker: sudo docker-compose up
-Выполните миграции внутри докера sudo docker-compose exec web python manage.py migrate --noinput
-Создайте суперюзера внутри докера sudo docker-compose exec web python manage.py createsuperuser
-Соберите всю статику внутри докера sudo docker-compose exec web python manage.py collectstatic --no-input
-Загрузите тестовые данные sudo docker-compose exec web python manage.py loaddata fixtures.json
+1) Скопируйте проект к себе на компютер git clone https://github.com/warderus/infra_sp2
+2) Создайте файл .env со значениями: DB_ENGINE=django.db.backends.postgresql DB_NAME=postgres POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres DB_HOST=db DB_PORT=5432 EMAIL_HOST_PASSWORD=<Ваш пароль от почты>
+3) Запустите Docker: sudo docker-compose up
+4) Выполните миграции внутри докера sudo docker-compose exec web python manage.py migrate --noinput
+5) Создайте суперюзера внутри докера sudo docker-compose exec web python manage.py createsuperuser
+6) Соберите всю статику внутри докера sudo docker-compose exec web python manage.py collectstatic --no-input
+7) Загрузите тестовые данные sudo docker-compose exec web python manage.py loaddata fixtures.json
+
 Алгоритм регистрации пользователей
+
 Пользователь отправляет запрос с параметром email и username на /auth/email/.
 YaMDB отправляет письмо с кодом подтверждения (confirmation_code) на адрес email .
 Пользователь отправляет запрос с параметрами email, username и confirmation_code на /auth/token/, в ответе на запрос ему приходит token (JWT-токен).
